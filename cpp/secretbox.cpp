@@ -53,6 +53,30 @@ namespace react_native_nacl {
 		);
 		jsiRuntime.global().setProperty(jsiRuntime, "secretboxSeal", std::move(secretboxSeal));
 
+		auto secretboxOpenBinary = jsi::Function::createFromHostFunction(
+			jsiRuntime,
+			jsi::PropNameID::forAscii(jsiRuntime, "secretboxOpenBinary"),
+			3,
+			[](jsi::Runtime& jsiRuntime, const jsi::Value& thisValue, const jsi::Value* arguments, size_t count) -> jsi::Value {
+				auto nonce = arguments[0].asObject(jsiRuntime).getArrayBuffer(jsiRuntime);
+				auto cipher_text = arguments[1].asObject(jsiRuntime).getArrayBuffer(jsiRuntime);
+				auto secret_key = arguments[2].asObject(jsiRuntime).getArrayBuffer(jsiRuntime);
+
+				std::vector<uint8_t> message(cipher_text.size(jsiRuntime));
+				if (crypto_secretbox_open_easy(message.data(), cipher_text.data(jsiRuntime), message.size(), nonce.data(jsiRuntime), secret_key.data(jsiRuntime)) != 0) {
+					return jsi::Value(nullptr);
+				}
+
+				jsi::Function arrayBufferCtor = jsiRuntime.global().getPropertyAsFunction(jsiRuntime, "ArrayBuffer");
+				jsi::Object o = arrayBufferCtor.callAsConstructor(jsiRuntime, (int)message.size()).getObject(jsiRuntime);
+				jsi::ArrayBuffer buf = o.getArrayBuffer(jsiRuntime);
+				memcpy(buf.data(jsiRuntime), message.data(), message.size());
+
+				return o;
+			}
+		);
+		jsiRuntime.global().setProperty(jsiRuntime, "secretboxOpenBinary", std::move(secretboxOpenBinary));
+
 		auto secretboxOpen = jsi::Function::createFromHostFunction(
 			jsiRuntime,
 			jsi::PropNameID::forAscii(jsiRuntime, "secretboxOpen"),
