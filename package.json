@@ -96,11 +96,10 @@
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
-      "requireBranch": "main",
       "tagName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
       "release": true
