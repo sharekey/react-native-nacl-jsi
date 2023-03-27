@@ -87,7 +87,7 @@ export function secretboxOpen(cipherText: string, secretKey: string): string {
   return g.secretboxOpen(cipherText, secretKey);
 }
 
-export function secretboxOpenBinary(nonce: ArrayBuffer, cipherData: ArrayBuffer, secretKey: ArrayBuffer): string {
+export function secretboxOpenBinary(nonce: ArrayBuffer, cipherData: ArrayBuffer, secretKey: ArrayBuffer): ArrayBuffer | number {
   return g.secretboxOpenBinary(nonce, cipherData, secretKey);
 }
 
