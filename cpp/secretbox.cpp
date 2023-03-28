@@ -77,6 +77,29 @@ namespace react_native_nacl {
 		);
 		jsiRuntime.global().setProperty(jsiRuntime, "secretboxOpenBinary", std::move(secretboxOpenBinary));
 
+		auto hash = jsi::Function::createFromHostFunction(
+			jsiRuntime,
+			jsi::PropNameID::forAscii(jsiRuntime, "hash"),
+			1,
+			[](jsi::Runtime& jsiRuntime, const jsi::Value& thisValue, const jsi::Value* arguments, size_t count) -> jsi::Value {
+				auto message = arguments[0].asObject(jsiRuntime).getArrayBuffer(jsiRuntime);
+
+				// todo - replace with cpp const??
+				int resultLength = 64;
+
+				std::vector<uint8_t> result;
+				result.resize(resultLength);
+
+				// todo - call native function
+				// if (native nacl function) {
+				return jsi::Value(nullptr);
+				// }
+
+				// return uint8VectorToArrayBuffer(vector);
+			}
+		);
+		jsiRuntime.global().setProperty(jsiRuntime, "hash", std::move(secretboxOpenBinary));
+
 		auto secretboxOpen = jsi::Function::createFromHostFunction(
 			jsiRuntime,
 			jsi::PropNameID::forAscii(jsiRuntime, "secretboxOpen"),

@@ -4,6 +4,18 @@
 using namespace facebook;
 
 namespace react_native_nacl {
+	jsi::Object uint8VectorToArrayBuffer(jsi::Runtime& jsiRuntime, std::vector<uint8_t>& vector) {
+		jsi::Function arrayBufferConstructor = jsiRuntime.global().getPropertyAsFunction(jsiRuntime, "ArrayBuffer");
+
+		jsi::Object jsiArrayBufferObject = arrayBufferConstructor.callAsConstructor(jsiRuntime, (int)vector.size()).getObject(jsiRuntime);
+
+		jsi::ArrayBuffer buffer = o.getArrayBuffer(jsiRuntime);
+
+		memcpy(buf.data(jsiRuntime), result.data(), result.size());
+
+		return jsiArrayBufferObject;
+	}
+
 	std::vector<uint8_t> base64ToBin(jsi::Runtime& jsiRuntime, const std::string &str) {
 		std::vector<u_int8_t> bin;
 		bin.resize(str.size() / 4 * 3);

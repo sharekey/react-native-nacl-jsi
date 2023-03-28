@@ -91,6 +91,14 @@ export function secretboxOpenBinary(nonce: ArrayBuffer, cipherData: ArrayBuffer,
   return g.secretboxOpenBinary(nonce, cipherData, secretKey);
 }
 
+export const CONST = {
+  HASH_LENGTH: 64,
+}
+
+export function hash(msg: Uint8Array): Uint8Array {
+  return g.hash(msg);
+}
+
 export function signGenerateKey(): KeyPair {
   return g.signGenerateKey();
 }
