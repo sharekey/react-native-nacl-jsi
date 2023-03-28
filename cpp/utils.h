@@ -8,7 +8,7 @@
 #include <jsi/jsi.h>
 
 namespace react_native_nacl {
-	jsi::Object uint8VectorToArrayBuffer(jsi::Runtime& jsiRuntime, std::vector<uint8_t>& vector);
+	facebook::jsi::Object uInt8VectorToArrayBuffer(facebook::jsi::Runtime& jsiRuntime, std::vector<uint8_t>& vector);
 
 	std::vector<uint8_t> base64ToBin(facebook::jsi::Runtime& jsiRuntime, const std::string &str);
 	std::string binToBase64(const uint8_t *buffer, size_t length, uint8_t variant);
