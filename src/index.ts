@@ -87,6 +87,22 @@ export function secretboxOpen(cipherText: string, secretKey: string): string {
   return g.secretboxOpen(cipherText, secretKey);
 }
 
+export function secretboxOpenBinary(
+  nonce: ArrayBuffer,
+  cipherData: ArrayBuffer,
+  secretKey: ArrayBuffer
+): ArrayBuffer | null {
+  return g.secretboxOpenBinary(nonce, cipherData, secretKey);
+}
+
+export const CONST = {
+  HASH_LENGTH: 64,
+};
+
+export function hash(msg: ArrayBuffer): ArrayBuffer | null {
+  return g.hash(msg);
+}
+
 export function signGenerateKey(): KeyPair {
   return g.signGenerateKey();
 }
@@ -111,8 +127,8 @@ export function argon2idHash(
   return g.argon2idHash(password, iterations, memoryLimit);
 }
 
-export function argon2idVerify(hash: string, password: string): boolean {
-  return g.argon2idVerify(hash, password);
+export function argon2idVerify(hashString: string, password: string): boolean {
+  return g.argon2idVerify(hashString, password);
 }
 
 export function argon2idDeriveKey(

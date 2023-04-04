@@ -1,6 +1,6 @@
 {
   "name": "react-native-nacl-jsi",
-  "version": "0.4.1",
+  "version": "0.5.2",
   "description": "Sodium for React Native with JSI binding",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -95,11 +95,10 @@
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
-      "requireBranch": "main",
       "tagName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
       "release": true
