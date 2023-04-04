@@ -1,5 +1,5 @@
 #include "secretbox.h"
-#include "sodium.h"
+#include "sodium_18.h"
 #include "utils.h"
 
 using namespace facebook;

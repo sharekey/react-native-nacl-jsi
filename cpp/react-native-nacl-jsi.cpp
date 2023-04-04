@@ -9,7 +9,7 @@
 #include "react-native-nacl-jsi.h"
 #include "secretbox.h"
 #include "sign.h"
-#include "sodium.h"
+#include "sodium_18.h"
 
 using namespace facebook;
 
