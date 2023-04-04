@@ -30,8 +30,7 @@
     "release": "release-it",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn && yarn example pods",
-    "postinstall": "tar -xzf precompiled.tgz",
-    "rebuild": "./build.sh"
+    "postinstall": "tar -xzf precompiled.tgz"
   },
   "keywords": [
     "react-native",
