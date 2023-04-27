@@ -17,13 +17,15 @@ RCT_EXPORT_MODULE()
 - (void)setBridge:(RCTBridge *)bridge {
   _bridge = bridge;
   _setBridgeOnMainQueue = RCTIsMainQueue();
-  
+
   RCTCxxBridge *cxxBridge = (RCTCxxBridge *)self.bridge;
   if (!cxxBridge.runtime) {
     return;
   }
-  
-  react_native_nacl::install(*(facebook::jsi::Runtime *)cxxBridge.runtime);
+
+  [bridge dispatchBlock:^{
+    react_native_nacl::install(*(facebook::jsi::Runtime *)cxxBridge.runtime);
+  } queue:RCTJSThread];
 }
 
 - (void)invalidate {
